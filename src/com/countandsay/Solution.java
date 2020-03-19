@@ -1,8 +1,5 @@
 package com.countandsay;
 
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public String countAndSay(int n) {
         if (n == 1) {
