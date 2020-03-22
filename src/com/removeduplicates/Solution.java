@@ -31,8 +31,8 @@ public class Solution {
         int len = nums.size();
         if (len < 2) { return len; }
 
-        for (int i = 0; i < len; i++) {
-            if (i != len - 1 && nums.get(i) == nums.get(i + 1)){
+        for (int i = 0; i < len - 1; i++) {
+            if (nums.get(i) == nums.get(i + 1)){
                 nums.remove(i + 1);
                 i--;
                 len--;
