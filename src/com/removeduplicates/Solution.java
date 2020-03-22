@@ -10,22 +10,16 @@ public class Solution {
 
         int currentIndex = 0;
         int tailIndex = 1;
-        int dupes = 0;
         while (tailIndex < len){
-            if (nums[currentIndex] == nums[tailIndex]){
-                dupes++;
-                tailIndex++;
-            } else if (tailIndex - currentIndex > 1) {
-                nums[currentIndex + 1] = nums[tailIndex];
+            if (nums[currentIndex] != nums[tailIndex]){
                 currentIndex++;
+                nums[currentIndex] = nums[tailIndex];
+                tailIndex++;
+            } else {
                 tailIndex++;
             }
         }
 
-        for (int i = 0; i < nums.length; i++){
-            System.out.print("[" + nums[i] + "]");
-        }
-
-        return len - dupes;
+        return currentIndex + 1;
     }
 }
