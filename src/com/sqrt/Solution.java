@@ -1,36 +1,23 @@
 package com.sqrt;
 
 public class Solution {
+    private static int result = -1;
     public static int mySqrt(int x) {
-        int i = 0;
-        int lastAcceptableValue = i;
-        int result = i * i;
-        while (result < x) {
-            lastAcceptableValue = i;
-            i++;
-            result = i * i;
-            if (result == x) { return i; }
+        if (x == 0 || x == 1) {
+            return x;
         }
+        Solution s = new Solution();
+        s.binarySearch(x, 0, x/2);
+        return Solution.result;
+    }
 
-        return lastAcceptableValue;
+    private void binarySearch(int x, int lower, int upper){
+        if (lower > upper){ Solution.result = upper; return; }
+        int mid = lower + (upper - lower)/2;
+        long sq = (long) mid * mid;
+
+        if (sq > Integer.MAX_VALUE || sq > x) { binarySearch(x, lower,mid - 1);}
+        else if (sq < x) { binarySearch(x, mid + 1, upper); }
+        else { Solution.result = mid; return; }
     }
 }
-/***
-Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
-
-You must not use any built-in exponent function or operator.
-
-For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
-
-
-Example 1:
-
-Input: x = 4
-Output: 2
-Explanation: The square root of 4 is 2, so we return 2.
-Example 2:
-
-Input: x = 8
-Output: 2
-Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
- ***/
