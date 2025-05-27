@@ -1,29 +1,19 @@
 package com.climbingstairs;
+import java.util.HashMap;
 
 public class Solution {
-    private static int pathCount = 0;
     public static int climbStairs(int n) {
-        if (n == 0){ return 0; }
-        justKeepClimbing(n, 0);
-        int result = getPathCount();
-        setPathCount(0);
-        return result;
+        HashMap<Integer,Integer> memo = new HashMap<>();
+        memo.put(1, 1);
+        memo.put(2, 2);
+        return justKeepClimbing(n, memo);
     }
 
-    public static void justKeepClimbing(int n, int totalSteps) {
-        if (totalSteps == n) {
-            setPathCount(getPathCount() + 1);
-        } else if (totalSteps < n) {
-            justKeepClimbing(n, totalSteps + 1);
-            justKeepClimbing(n, totalSteps + 2);
+    public static int justKeepClimbing(int n, HashMap<Integer,Integer> memo) {
+        // only perform calculation if it hasn't already been done
+        if (!memo.containsKey(n)) {
+            memo.put(n, justKeepClimbing(n - 1, memo) + justKeepClimbing(n - 2, memo));
         }
-    }
-
-    public static void setPathCount(int pathCount) {
-        Solution.pathCount = pathCount;
-    }
-
-    public static int getPathCount() {
-        return pathCount;
+        return memo.get(n);
     }
 }

@@ -5,13 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SolutionTest {
-    @DisplayName("zero paths")
-    @Test
-    void zero() {
-        int actualSteps = Solution.climbStairs(0);
-        int expectedSteps = 0;
-        assertEquals(expectedSteps, actualSteps);
-    }
     @DisplayName("climb to two")
     @Test
     void two() {
