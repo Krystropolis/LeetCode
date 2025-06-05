@@ -28,60 +28,62 @@ public class SolutionTest {
                 8, eight,
                 9, nine
         ));
-        if (Objects.equals(test, "null")) {
-            return null;
-        } else if (Objects.equals(test, "full tree")) {
-            TreeNode root = new TreeNode(map.get(1).val, map.get(2), map.get(3));
-            //[1,2,3,4,5,null,8,null,null,6,7,9]
+        switch (test) {
+            case "null" -> {
+                return null;
+            }
+            case "full tree" -> {
+                TreeNode root = new TreeNode(map.get(1).val, map.get(2), map.get(3));
 
-            map.get(2).left = map.get(4);
-            map.get(2).right = map.get(5);
+                map.get(2).left = map.get(4);
+                map.get(2).right = map.get(5);
 
-            map.get(3).right = map.get(8);
+                map.get(3).right = map.get(8);
 
-            map.get(5).left = map.get(6);
-            map.get(5).right = map.get(7);
+                map.get(5).left = map.get(6);
+                map.get(5).right = map.get(7);
 
-            map.get(8).left = map.get(9);
+                map.get(8).left = map.get(9);
 
-            map.get(3).left = null;
-            map.get(4).left = null;
-            map.get(4).right = null;
-            map.get(6).left = null;
-            map.get(6).right = null;
-            map.get(7).left = null;
-            map.get(7).right = null;
-            map.get(8).right = null;
-            map.get(9).left = null;
+                map.get(3).left = null;
+                map.get(4).left = null;
+                map.get(4).right = null;
+                map.get(6).left = null;
+                map.get(6).right = null;
+                map.get(7).left = null;
+                map.get(7).right = null;
+                map.get(8).right = null;
+                map.get(9).left = null;
 
-            return root;
-        } else if (Objects.equals(test, "duplicate")) {
-        TreeNode root = new TreeNode(map.get(1).val, map.get(2), map.get(3));
-        //[1,2,3,4,5,5,8,null,null,6,7,9]
+                return root;
+            }
+            case "duplicate" -> {
+                TreeNode root = new TreeNode(map.get(1).val, map.get(2), map.get(3));
+                //[1,2,3,4,5,5,8,null,null,6,7,9]
 
-        map.get(2).left = map.get(4);
-        map.get(2).right = map.get(5);
+                map.get(2).left = map.get(4);
+                map.get(2).right = map.get(5);
 
-        map.get(3).left = map.get(55);
-        map.get(3).right = map.get(8);
+                map.get(3).left = map.get(55);
+                map.get(3).right = map.get(8);
 
-        map.get(5).left = map.get(6);
-        map.get(5).right = map.get(7);
+                map.get(5).left = map.get(6);
+                map.get(5).right = map.get(7);
 
-        map.get(8).left = map.get(9);
+                map.get(8).left = map.get(9);
 
-        map.get(4).left = null;
-        map.get(4).right = null;
-        map.get(6).left = null;
-        map.get(6).right = null;
-        map.get(7).left = null;
-        map.get(7).right = null;
-        map.get(8).right = null;
-        map.get(9).left = null;
+                map.get(4).left = null;
+                map.get(4).right = null;
+                map.get(6).left = null;
+                map.get(6).right = null;
+                map.get(7).left = null;
+                map.get(7).right = null;
+                map.get(8).right = null;
+                map.get(9).left = null;
 
-        return root;
-    } else {
-            throw new Error("case not yet created");
+                return root;
+            }
+            case null, default -> throw new Error("case not yet created");
         }
     }
 
@@ -94,6 +96,7 @@ public class SolutionTest {
         List<Integer> actualList = Solution.inorderTraversal(n);
         List<Integer> expectedList = new ArrayList<>();
         assertEquals(expectedList, actualList);
+        System.out.println(expectedList.toString());
     }
     //input: [1,2,3,4,5,null,8,null,null,6,7,9]
     //expected output: [4,2,6,5,7,1,3,9,8]
@@ -103,8 +106,9 @@ public class SolutionTest {
     {
         TreeNode n = instantiateNodes("full tree");
         List<Integer> actualList = Solution.inorderTraversal(n);
-        List<Integer> expectedList = new ArrayList<>();
+        List<Integer> expectedList = Arrays.asList(4,2,6,5,7,1,3,9,8);
         assertEquals(expectedList, actualList);
+        System.out.println(expectedList.toString());
     }
     //input: [1,2,3,4,5,5,8,null,null,6,7,9]
     //expected output: [4,2,6,5,7,1,5,3,9,8]
@@ -112,10 +116,10 @@ public class SolutionTest {
     @Test
     void duplicate()
     {
-        int[] actual = null;
         TreeNode n = instantiateNodes("duplicate");
         List<Integer> actualList = Solution.inorderTraversal(n);
-        List<Integer> expectedList = new ArrayList<>();
+        List<Integer> expectedList = Arrays.asList(4,2,6,5,7,1,5,3,9,8);
         assertEquals(expectedList, actualList);
+        System.out.println(expectedList.toString());
     }
 }
